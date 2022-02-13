@@ -16,7 +16,7 @@ export default {
 
     await axios
       .get(scheduleURL)
-      .then((response: AxiosResponse<any, any>) => {
+      .then(async (response: AxiosResponse<any, any>) => {
         const schedule: ScheduleT = response.data;
 
         const weekday: string = weekdays[new Date().getDay()];
@@ -69,7 +69,7 @@ export default {
 
         return message.reply({ embeds: [tutorings] });
       })
-      .catch(() => {
+      .catch(async () => {
         const error: MessageEmbed = new MessageEmbed()
           .setTitle('❌ Houve um erro ao buscar as monitorias!')
           .setDescription('Tente novamente mais tarde.')
@@ -80,7 +80,7 @@ export default {
           .setTimestamp()
           .setColor('#cd3846');
 
-        message.reply({ embeds: [error] });
+        await message.reply({ embeds: [error] });
       });
   },
 };
