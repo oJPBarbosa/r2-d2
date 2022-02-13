@@ -36,7 +36,7 @@ export default {
     );
 
     const help: MessageEmbed = new MessageEmbed()
-      .setTitle('🙋 Help')
+      .setTitle('🙋 A ajuda chegou!')
       .addFields(commands)
       .setFooter({
         text: 'Comando por ' + interaction.user.tag,
