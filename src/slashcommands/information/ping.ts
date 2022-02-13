@@ -23,6 +23,6 @@ export default {
       .setTimestamp()
       .setColor('#dd2e44');
 
-    await interaction.reply({ embeds: [ping] });
+    await interaction.reply({ embeds: [ping], ephemeral: true });
   },
 };
