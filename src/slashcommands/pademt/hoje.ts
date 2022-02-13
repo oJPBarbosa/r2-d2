@@ -71,7 +71,7 @@ export default {
       })
       .catch(async () => {
         const error: MessageEmbed = new MessageEmbed()
-          .setTitle('❌ Houve um erro ao buscar as monitorias!')
+          .setTitle('❌ Houve um erro ao consultar as monitorias de hoje!')
           .setDescription('Tente novamente mais tarde.')
           .setFooter({
             text: 'Comando por ' + interaction.user.tag,
