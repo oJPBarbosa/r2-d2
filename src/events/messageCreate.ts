@@ -29,6 +29,7 @@ export = {
     if (!command) {
       return;
     }
+
     await command.execute(message);
   },
 };
