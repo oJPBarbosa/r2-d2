@@ -17,7 +17,7 @@ export default {
           'ms`',
       )
       .setFooter({
-        text: 'Requested by ' + message.author.tag,
+        text: 'Comando por ' + message.author.tag,
         iconURL: message.author.displayAvatarURL(),
       })
       .setTimestamp()

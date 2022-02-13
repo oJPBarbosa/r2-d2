@@ -14,15 +14,15 @@ export default {
       .setDescription(
         '└ `' +
           Math.floor(message.createdTimestamp - interaction.createdTimestamp) +
-          'ms`'
+          'ms`',
       )
       .setFooter({
-        text: 'Requested by ' + interaction.user.tag,
-        iconURL: interaction.user.displayAvatarURL()
+        text: 'Comando por ' + interaction.user.tag,
+        iconURL: interaction.user.displayAvatarURL(),
       })
       .setTimestamp()
       .setColor('#dd2e44');
 
     await interaction.reply({ embeds: [ping] });
-  }
+  },
 };
