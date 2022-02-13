@@ -2,7 +2,7 @@ import 'dotenv/config';
 
 import { IClient } from './interfaces/Client';
 import { Client, Collection } from 'discord.js';
-import { handle } from './handler';
+import { handle } from './handlers';
 
 const client: IClient = new Client({
   intents: 32767,
