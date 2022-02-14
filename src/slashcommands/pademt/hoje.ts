@@ -17,7 +17,7 @@ export default {
     await axios
       .get(scheduleURL)
       .then(async (response: AxiosResponse<any, any>) => {
-        const schedule: ScheduleT = response.data;
+        const schedule: ScheduleT = response.data.schedules;
 
         const weekday: string = weekdays[new Date().getDay()];
 

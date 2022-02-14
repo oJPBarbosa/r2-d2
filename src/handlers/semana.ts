@@ -18,7 +18,7 @@ export const handleSelectMenuInteraction: Function = async (
   await axios
     .get(scheduleURL)
     .then(async (response: AxiosResponse<any, any>) => {
-      const schedule: ScheduleT = response.data;
+      const schedule: ScheduleT = response.data.schedules;
 
       const weekday: string = interaction.values[0];
 
