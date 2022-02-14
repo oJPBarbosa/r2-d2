@@ -2,8 +2,8 @@ import { Message, MessageEmbed } from 'discord.js';
 
 export default {
   data: {
-    name: 'agenda',
-    description: '📑 Veja a agenda das monitorias!',
+    name: 'agendamentos',
+    description: '📑 Veja os agendamentos!',
   },
   async execute(message: Message): Promise<void> {
     await message.reply({ embeds: [] });
