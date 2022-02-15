@@ -1,6 +1,11 @@
 import { IEventExecuteParams } from '../interfaces/Event';
 import { APIMessage } from 'discord-api-types';
-import { Message, CommandInteraction, SelectMenuInteraction } from 'discord.js';
+import {
+  Message,
+  CommandInteraction,
+  SelectMenuInteraction,
+  MessageEmbed,
+} from 'discord.js';
 import { SlashCommandT } from '../interfaces/SlashCommand';
 import { handleSelectMenuInteraction } from '../handlers/semana';
 
@@ -21,12 +26,25 @@ export = {
         return;
       }
 
+      if (!interaction.guildId) {
+        const error: MessageEmbed = new MessageEmbed()
+          .setTitle('❌ Não é possível executar comandos na DM!')
+          .setFooter({
+            text: 'Comando por ' + interaction.user.tag,
+            iconURL: interaction.user.displayAvatarURL(),
+          })
+          .setTimestamp()
+          .setColor('#cd3846');
+
+        return interaction.reply({ embeds: [error] });
+      }
+
       return slashcommand.execute(interaction);
     }
 
     if (interaction.isSelectMenu()) {
       if (interaction.customId === 'semana') {
-        handleSelectMenuInteraction(interaction);
+        return handleSelectMenuInteraction(interaction);
       }
     }
   },
