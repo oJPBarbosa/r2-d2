@@ -1,6 +1,6 @@
 export type TutorT = {
   name: string;
-  id: number;
+  id: string;
 };
 
 export type TutoringTimeT = {
@@ -15,4 +15,14 @@ export type TutoringT = {
 
 export type ScheduleT = {
   day: TutoringT[];
+};
+
+export type ChannelT = {
+  id: string;
+  tutor: TutorT;
+};
+
+export type GuildDataT = {
+  schedules: ScheduleT;
+  channels: ChannelT[];
 };

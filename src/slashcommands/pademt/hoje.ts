@@ -2,7 +2,11 @@ import { SlashCommandBuilder } from '@discordjs/builders';
 import { CommandInteraction, EmbedFieldData, MessageEmbed } from 'discord.js';
 import axios, { AxiosResponse } from 'axios';
 import { weekdays } from '../../utils/weekdays';
-import { ScheduleT, TutoringT, TutoringTimeT } from '../../interfaces/Schedule';
+import {
+  ScheduleT,
+  TutoringT,
+  TutoringTimeT,
+} from '../../interfaces/GuildData';
 
 export default {
   data: new SlashCommandBuilder()

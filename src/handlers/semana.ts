@@ -4,7 +4,7 @@ import {
   MessageEmbed,
 } from 'discord.js';
 import axios, { AxiosResponse } from 'axios';
-import { ScheduleT, TutoringT, TutoringTimeT } from '../interfaces/Schedule';
+import { ScheduleT, TutoringT, TutoringTimeT } from '../interfaces/GuildData';
 import { weekdays, translatedWeekdays } from '../utils/weekdays';
 
 export const handleSelectMenuInteraction: Function = async (
