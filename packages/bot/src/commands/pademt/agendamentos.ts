@@ -1,4 +1,6 @@
-import { Message, MessageEmbed } from 'discord.js';
+// todo
+import { Message } from 'discord.js';
+import wip from '../../utils/wip';
 
 export default {
   data: {
@@ -6,6 +8,6 @@ export default {
     description: '📑 Veja os agendamentos!',
   },
   async execute(message: Message): Promise<void> {
-    await message.reply({ embeds: [] });
+    await message.reply({ embeds: [wip('agendamentos', message.author)] });
   },
 };

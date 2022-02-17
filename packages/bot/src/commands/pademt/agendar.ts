@@ -1,5 +1,7 @@
+// todo
 // prisma?
-import { Message, MessageEmbed } from 'discord.js';
+import { Message } from 'discord.js';
+import wip from '../../utils/wip';
 
 export default {
   data: {
@@ -7,6 +9,6 @@ export default {
     description: '📋 Agende uma monitoria!',
   },
   async execute(message: Message): Promise<void> {
-    await message.reply({ embeds: [] });
+    await message.reply({ embeds: [wip('agendar', message.author)] });
   },
 };
