@@ -17,13 +17,14 @@ export = {
     client.user.setActivity('às monitorias!', { type: 'WATCHING' });
 
     client.guilds.cache.forEach(async (guild: Guild) => {
-      const guildData: GuildDataT = await axios
-        .get(process.env.SCHEDULES_URL.replace('{guild}', guild.id))
-        .then((response: AxiosResponse<any, any>) => response.data)
-        .catch(() => {});
+      const response: AxiosResponse<any, any> = await axios.get(
+        process.env.SCHEDULES_URL.replace('{guild}', guild.id),
+      );
 
-      if (guildData) {
-        const { schedule, channels } = guildData;
+      const { data }: { data: GuildDataT } = response;
+
+      if (data) {
+        const { schedule, channels } = data;
 
         Schedules.addSchedule(guild.id, schedule);
         Channels.addChannels(guild.id, channels);
