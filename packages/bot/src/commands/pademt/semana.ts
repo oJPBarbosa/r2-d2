@@ -40,7 +40,8 @@ export default {
       .setColor('#cd3846');
 
     const dm: DMChannel = await message.author.createDM();
-
     await dm.send({ embeds: [embed], components: [row] });
+
+    await message.delete();
   },
 };

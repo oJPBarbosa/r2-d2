@@ -23,6 +23,6 @@ export type ChannelT = {
 };
 
 export type GuildDataT = {
-  schedules: ScheduleT;
+  schedule: ScheduleT;
   channels: ChannelT[];
 };

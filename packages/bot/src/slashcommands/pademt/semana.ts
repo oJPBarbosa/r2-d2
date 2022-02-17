@@ -43,11 +43,7 @@ export default {
 
     await dm.send({ embeds: [embed], components: [row] });
 
-    await interaction.reply({
-      content: ' ',
-      ephemeral: true,
-    });
-
+    await interaction.reply('asd');
     await interaction.deleteReply();
   },
 };

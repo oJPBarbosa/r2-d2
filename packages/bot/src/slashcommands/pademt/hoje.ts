@@ -1,90 +1,74 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { CommandInteraction, EmbedFieldData, MessageEmbed } from 'discord.js';
-import axios, { AxiosResponse } from 'axios';
+import { TutoringT, TutoringTimeT } from '../../interfaces/GuildData';
+import { Schedules } from '../../lib/Schedules';
 import { weekdays } from '../../utils/weekdays';
-import {
-  ScheduleT,
-  TutoringT,
-  TutoringTimeT,
-} from '../../interfaces/GuildData';
 
 export default {
   data: new SlashCommandBuilder()
     .setName('hoje')
     .setDescription('📅 Veja as monitorias do dia!'),
   async execute(interaction: CommandInteraction): Promise<void> {
-    const scheduleURL: string = process.env.SCHEDULES_URL.replace(
-      '{guild}',
+    const tutorings: TutoringT[] = Schedules.getDayTutorings(
       interaction.guild.id,
+      weekdays[new Date().getDay()],
     );
 
-    await axios
-      .get(scheduleURL)
-      .then(async (response: AxiosResponse<any, any>) => {
-        const schedule: ScheduleT = response.data.schedules;
+    if (!tutorings) {
+      const embed: MessageEmbed = new MessageEmbed()
+        .setTitle('ℹ️ Não há monitorias hoje.')
+        .setFooter({
+          text: 'Comando por ' + interaction.user.tag,
+          iconURL: interaction.user.displayAvatarURL(),
+        })
+        .setTimestamp()
+        .setColor('#538bbf');
 
-        const weekday: string = weekdays[new Date().getDay()];
+      return interaction.reply({ embeds: [embed] });
+    }
 
-        if (!schedule[weekday]) {
-          const noTutoringsToday: MessageEmbed = new MessageEmbed()
-            .setTitle('ℹ️ Não há monitorias hoje.')
-            .setFooter({
-              text: 'Comando por ' + interaction.user.tag,
-              iconURL: interaction.user.displayAvatarURL(),
-            })
-            .setTimestamp()
-            .setColor('#538bbf');
+    const fields: EmbedFieldData[] = [];
 
-          return interaction.reply({ embeds: [noTutoringsToday] });
-        }
+    tutorings.forEach((t: TutoringT) => {
+      let tts: string = '';
 
-        const schedules: EmbedFieldData[] = [];
-        schedule[weekday].forEach((tutoring: TutoringT) => {
-          const tutor: string = tutoring.tutor.name;
-
-          let tutorings: string = '';
-          tutoring.tutoring.forEach((t: TutoringTimeT) => {
-            tutorings += `- **${t.from[0].toLocaleString('pt-BR', {
-              minimumIntegerDigits: 2,
-            })}:${t.from[1].toLocaleString('pt-BR', {
-              minimumIntegerDigits: 2,
-            })}** às **${t.to[0].toLocaleString('pt-BR', {
-              minimumIntegerDigits: 2,
-            })}:${t.to[1].toLocaleString('pt-BR', {
-              minimumIntegerDigits: 2,
-            })}**\n`;
-          });
-
-          schedules.push({
-            name: tutor,
-            value: tutorings,
-          });
-        });
-
-        const tutorings: MessageEmbed = new MessageEmbed()
-          .setTitle('📅 Monitorias hoje:')
-          .setFields(schedules)
-          .setFooter({
-            text: 'Comando por ' + interaction.user.tag,
-            iconURL: interaction.user.displayAvatarURL(),
-          })
-          .setTimestamp()
-          .setColor('#cd3846');
-
-        return interaction.reply({ embeds: [tutorings] });
-      })
-      .catch(async () => {
-        const error: MessageEmbed = new MessageEmbed()
-          .setTitle('❌ Houve um erro ao consultar as monitorias de hoje!')
-          .setDescription('Tente novamente mais tarde.')
-          .setFooter({
-            text: 'Comando por ' + interaction.user.tag,
-            iconURL: interaction.user.displayAvatarURL(),
-          })
-          .setTimestamp()
-          .setColor('#cd3846');
-
-        await interaction.reply({ embeds: [error] });
+      t.tutoring.forEach((tt: TutoringTimeT) => {
+        tts +=
+          '- **`' +
+          tt.from[0].toLocaleString('pt-BR', {
+            minimumIntegerDigits: 2,
+          }) +
+          ':' +
+          tt.from[1].toLocaleString('pt-BR', {
+            minimumIntegerDigits: 2,
+          }) +
+          '`** às **`' +
+          tt.to[0].toLocaleString('pt-BR', {
+            minimumIntegerDigits: 2,
+          }) +
+          ':' +
+          tt.to[1].toLocaleString('pt-BR', {
+            minimumIntegerDigits: 2,
+          }) +
+          '`**\n';
       });
+
+      fields.push({
+        name: t.tutor.name,
+        value: tts,
+      });
+    });
+
+    const embed: MessageEmbed = new MessageEmbed()
+      .setTitle('📅 Monitorias hoje:')
+      .setFields(fields)
+      .setFooter({
+        text: 'Comando por ' + interaction.user.tag,
+        iconURL: interaction.user.displayAvatarURL(),
+      })
+      .setTimestamp()
+      .setColor('#cd3846');
+
+    return interaction.reply({ embeds: [embed] });
   },
 };

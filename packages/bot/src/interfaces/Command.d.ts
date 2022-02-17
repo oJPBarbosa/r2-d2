@@ -7,5 +7,5 @@ export type CommandData = {
 
 export type CommandT = {
   data: CommandData;
-  execute(message: Message): Promise<void>;
+  execute(message: Message): Promise<Message<boolean>>;
 };

@@ -24,9 +24,7 @@ import {
 import axios, { AxiosResponse } from 'axios';
 import { weekdays } from '../utils/weekdays';
 
-export const watchVoiceChannels: Function = async (
-  client: IClient,
-): Promise<void> => {
+export default async (client: IClient): Promise<void> => {
   const guilds: Collection<string, Guild> = client.guilds.cache;
 
   guilds.forEach((guild: Guild) => {
