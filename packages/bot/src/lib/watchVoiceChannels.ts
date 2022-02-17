@@ -182,7 +182,9 @@ export const watchVoiceChannels: Function = async (
                             message.createdTimestamp + 300000 < now.getTime() ||
                             !message?.embeds[0]?.description?.includes(
                               'monitor(a) ' + tutor.name,
-                            )
+                            ) ||
+                            message?.embeds[0]?.description !==
+                              `Olá, ${member.user.username}! Não há monitorias hoje.`
                           ) {
                             await dm.send({
                               embeds: [absentTutor],
@@ -238,7 +240,9 @@ export const watchVoiceChannels: Function = async (
                             message.createdTimestamp + 300000 < now.getTime() ||
                             !message?.embeds[0]?.description?.includes(
                               'monitor(a) ' + tutor.name,
-                            )
+                            ) ||
+                            message?.embeds[0]?.description !==
+                              `Olá, ${member.user.username}! Não há monitorias hoje.`
                           ) {
                             await dm.send({
                               embeds: [noTutoringsNow],
