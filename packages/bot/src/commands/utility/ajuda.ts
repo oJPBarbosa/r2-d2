@@ -24,7 +24,11 @@ export default {
               file,
             )).default;
 
-            if (command.data.name !== 'ajuda') {
+            if (
+              command.data.name !== 'ajuda' &&
+              command.data.name !== 'agendamentos' && // temporary
+              command.data.name !== 'agendar' // temporary
+            ) {
               commands.push({
                 name: '`' + command.data.name + '`',
                 value: command.data.description,
