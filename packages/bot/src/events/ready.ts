@@ -32,6 +32,6 @@ export = {
 
     console.log(client.user.username + ' is up and running!');
 
-    // watchVoiceChannels(client);
+    watchVoiceChannels(client, 250);
   },
 };
