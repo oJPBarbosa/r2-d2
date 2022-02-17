@@ -9,6 +9,9 @@ export default {
     .setName('agendar')
     .setDescription('📋 Agende uma monitoria!'),
   async execute(interaction: CommandInteraction): Promise<void> {
-    await interaction.reply({ embeds: [wip('agendar', interaction.user)] });
+    await interaction.reply({
+      embeds: [wip('agendar', interaction.user)],
+      ephemeral: true,
+    });
   },
 };

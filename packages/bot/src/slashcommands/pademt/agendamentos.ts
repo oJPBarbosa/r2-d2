@@ -10,6 +10,7 @@ export default {
   async execute(interaction: CommandInteraction): Promise<void> {
     await interaction.reply({
       embeds: [wip('agendamentos', interaction.user)],
+      ephemeral: true,
     });
   },
 };
