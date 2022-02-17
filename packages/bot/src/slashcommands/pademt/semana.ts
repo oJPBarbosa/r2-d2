@@ -5,6 +5,7 @@ import {
   MessageActionRow,
   MessageSelectMenu,
   MessageEmbed,
+  DMChannel,
 } from 'discord.js';
 import { weekdays, translatedWeekdays } from '../../utils/weekdays';
 
@@ -18,7 +19,7 @@ export default {
         label:
           translatedWeekdays[index].charAt(0).toUpperCase() +
           translatedWeekdays[index].slice(1),
-        value: weekday,
+        value: `${interaction.guild.id}-${weekday}`,
       }),
     );
 
@@ -29,7 +30,7 @@ export default {
         .addOptions(options),
     );
 
-    const week: MessageEmbed = new MessageEmbed()
+    const embed: MessageEmbed = new MessageEmbed()
       .setTitle('🗓️ Selecione um dia da semana:')
       .setFooter({
         text: 'Comando por ' + interaction.user.tag,
@@ -38,9 +39,15 @@ export default {
       .setTimestamp()
       .setColor('#cd3846');
 
+    const dm: DMChannel = await interaction.user.createDM();
+
+    await dm.send({ embeds: [embed], components: [row] });
+
     await interaction.reply({
-      embeds: [week],
-      components: [row],
+      content: ' ',
+      ephemeral: true,
     });
+
+    await interaction.deleteReply();
   },
 };
