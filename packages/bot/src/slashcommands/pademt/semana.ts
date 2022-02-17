@@ -33,17 +33,15 @@ export default {
     const embed: MessageEmbed = new MessageEmbed()
       .setTitle('🗓️ Selecione um dia da semana:')
       .setFooter({
-        text: 'Comando por ' + interaction.user.tag,
-        iconURL: interaction.user.displayAvatarURL(),
+        text: interaction.guild.name,
+        iconURL: interaction.guild.iconURL(),
       })
       .setTimestamp()
       .setColor('#cd3846');
 
+    await interaction.reply({ content: '🗓️', ephemeral: true });
+
     const dm: DMChannel = await interaction.user.createDM();
-
     await dm.send({ embeds: [embed], components: [row] });
-
-    await interaction.reply('asd');
-    await interaction.deleteReply();
   },
 };

@@ -22,8 +22,8 @@ export const handleSelectMenuInteraction: Function = async (
         }.`,
       )
       .setFooter({
-        text: 'Comando por ' + interaction.user.tag,
-        iconURL: interaction.user.displayAvatarURL(),
+        text: interaction.client.guilds.cache.get(guild).name,
+        iconURL: interaction.client.guilds.cache.get(guild).iconURL(),
       })
       .setTimestamp()
       .setColor('#538bbf');
@@ -65,11 +65,10 @@ export const handleSelectMenuInteraction: Function = async (
 
   const embed: MessageEmbed = new MessageEmbed()
     .setTitle(`📅 Monitorias ${translatedWeekdays[weekdays.indexOf(weekday)]}:`)
-    .setDescription(interaction.client.guilds.cache.get(guild).name)
     .setFields(fields)
     .setFooter({
-      text: 'Comando por ' + interaction.user.tag,
-      iconURL: interaction.user.displayAvatarURL(),
+      text: interaction.client.guilds.cache.get(guild).name,
+      iconURL: interaction.client.guilds.cache.get(guild).iconURL(),
     })
     .setTimestamp()
     .setColor('#cd3846');
