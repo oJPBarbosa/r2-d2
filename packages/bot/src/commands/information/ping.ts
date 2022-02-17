@@ -7,9 +7,9 @@ export default {
   },
   async execute(message: Message): Promise<void> {
     const packet: Message = await message.channel.send('.');
-    packet.delete();
+    await packet.delete();
 
-    const ping: MessageEmbed = new MessageEmbed()
+    const embed: MessageEmbed = new MessageEmbed()
       .setTitle('🏓 Pong!')
       .setDescription(
         '└ `' +
@@ -23,6 +23,6 @@ export default {
       .setTimestamp()
       .setColor('#dd2e44');
 
-    await message.reply({ embeds: [ping] });
+    await message.reply({ embeds: [embed] });
   },
 };

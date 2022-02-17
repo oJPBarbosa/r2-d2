@@ -39,7 +39,7 @@ export default {
       },
     );
 
-    const help: MessageEmbed = new MessageEmbed()
+    const embed: MessageEmbed = new MessageEmbed()
       .setTitle('🙋 A ajuda chegou!')
       .addFields(commands)
       .setFooter({
@@ -49,6 +49,6 @@ export default {
       .setTimestamp()
       .setColor('#e58032');
 
-    await message.reply({ embeds: [help] });
+    await message.reply({ embeds: [embed] });
   },
 };

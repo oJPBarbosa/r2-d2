@@ -6,14 +6,14 @@ export default {
     .setName('ping')
     .setDescription('Ping? 🏓 Pong!'),
   async execute(interaction: CommandInteraction): Promise<void> {
-    const message: Message = await interaction.channel.send('.');
-    message.delete();
+    const packet: Message = await interaction.channel.send('.');
+    await packet.delete();
 
-    const ping: MessageEmbed = new MessageEmbed()
+    const embed: MessageEmbed = new MessageEmbed()
       .setTitle('🏓 Pong!')
       .setDescription(
         '└ `' +
-          Math.floor(message.createdTimestamp - interaction.createdTimestamp) +
+          Math.floor(packet.createdTimestamp - interaction.createdTimestamp) +
           'ms`',
       )
       .setFooter({
@@ -23,6 +23,6 @@ export default {
       .setTimestamp()
       .setColor('#dd2e44');
 
-    await interaction.reply({ embeds: [ping], ephemeral: true });
+    await interaction.reply({ embeds: [embed], ephemeral: true });
   },
 };
