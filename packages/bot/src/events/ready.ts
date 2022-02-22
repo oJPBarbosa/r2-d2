@@ -4,7 +4,7 @@ import { Schedules } from '../lib/Schedules';
 import { Channels } from '../lib/Channels';
 import { GuildDataT } from '../interfaces/GuildData';
 import axios, { AxiosResponse } from 'axios';
-import watchVoiceChannels from '../lib/watchVoiceChannels';
+// import watchVoiceChannels from '../lib/watchVoiceChannels';
 
 export = {
   name: 'ready',
@@ -33,6 +33,6 @@ export = {
 
     console.log(client.user.username + ' is up and running!');
 
-    watchVoiceChannels(client, 250);
+    // watchVoiceChannels(client, 250);
   },
 };
