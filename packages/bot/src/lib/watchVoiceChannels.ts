@@ -1,3 +1,5 @@
+// todo: make this bullshit work properly
+
 import { IClient } from '../interfaces/Client';
 import {
   VoiceChannel,
@@ -24,7 +26,7 @@ import { Schedules } from './Schedules';
 import { weekdays } from '../utils/weekdays';
 
 export default async (client: IClient, interval: number): Promise<void> => {
-  await new Promise((resolve) => setTimeout(resolve, interval));
+  await new Promise((resolve) => setTimeout(resolve, 250));
 
   const channels: ChannelT[] = [];
 
@@ -35,8 +37,6 @@ export default async (client: IClient, interval: number): Promise<void> => {
   );
 
   setInterval(async () => {
-    await new Promise((resolve) => setTimeout(resolve, interval));
-
     channels.forEach(async (c: ChannelT) => {
       const channel: VoiceChannel = client.channels.cache.get(
         c.id,
@@ -58,7 +58,7 @@ export default async (client: IClient, interval: number): Promise<void> => {
         const tutorings: CurrentTutoringT =
           Schedules.getChannelCurrentTutorings(channel.guild.id, channel.id);
 
-        const now: Date = new Date();
+        const today: string = weekdays[new Date().getDay()];
 
         if (tutorings && !members.has(tutor.id)) {
           // if there should be tutorings happening right now in the channel
@@ -143,36 +143,33 @@ export default async (client: IClient, interval: number): Promise<void> => {
 
             const dm: DMChannel = await member.createDM();
 
-            const messages: Collection<
-              string,
-              Message<boolean>
-            > = await dm.messages.fetch({ limit: 1 });
-            const message: Message = messages.first();
+            if (
+              new Date().getMinutes() >
+              (await dm.messages.fetch({ limit: 1 }))
+                .first()
+                .createdAt.getMinutes() +
+                1
+            ) {
+              await dm.send({
+                embeds: [embed],
+                components: [row],
+              });
 
-            if (message) {
-              if (message.createdTimestamp + 60000 < now.getTime()) {
-                await dm.send({
-                  embeds: [embed],
-                  components: [row],
-                });
-              }
+              await new Promise((resolve) => setTimeout(resolve, 10000));
             } else {
               await dm.send({
                 embeds: [embed],
                 components: [row],
               });
+
+              await new Promise((resolve) => setTimeout(resolve, 10000));
             }
           });
         } else {
           members.forEach(async (member: GuildMember) => {
             const embed: MessageEmbed = new MessageEmbed();
 
-            if (
-              !Schedules.getDayTutorings(
-                channel.guild.id,
-                weekdays[now.getDay()],
-              )
-            ) {
+            if (!Schedules.getDayTutorings(channel.guild.id, today)) {
               embed
                 .setTitle('📢 Comunicado da monitoria:')
                 .setDescription(
@@ -183,10 +180,7 @@ export default async (client: IClient, interval: number): Promise<void> => {
             } else {
               let tts: string = '';
 
-              Schedules.getDayTutorings(
-                channel.guild.id,
-                weekdays[now.getDay()],
-              )
+              Schedules.getDayTutorings(channel.guild.id, today)
                 .find((t: TutoringT) => t.tutor.id === tutor.id)
                 .tutoring.forEach((tt: TutoringTimeT) => {
                   tts +=
@@ -220,24 +214,24 @@ export default async (client: IClient, interval: number): Promise<void> => {
 
             const dm: DMChannel = await member.createDM();
 
-            await new Promise((resolve) => setTimeout(resolve, 1000));
+            if (
+              new Date().getMinutes() >
+              (await dm.messages.fetch({ limit: 1 }))
+                .first()
+                .createdAt.getMinutes() +
+                1
+            ) {
+              await dm.send({
+                embeds: [embed],
+              });
 
-            const messages: Collection<
-              string,
-              Message<boolean>
-            > = await dm.messages.fetch({ limit: 1 });
-            const message: Message = messages.first();
-
-            if (message) {
-              if (message.createdTimestamp + 60000 < now.getTime()) {
-                await dm.send({
-                  embeds: [embed],
-                });
-              }
+              await new Promise((resolve) => setTimeout(resolve, 10000));
             } else {
               await dm.send({
                 embeds: [embed],
               });
+
+              await new Promise((resolve) => setTimeout(resolve, 10000));
             }
           });
         }
