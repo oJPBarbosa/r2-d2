@@ -4,7 +4,8 @@ export type SchedulesT = {
   schedule: ScheduleT;
 };
 
-export type NowTutoringsT = {
+export type CurrentTutoringT = {
   tutor: TutorT;
   tutoring: TutoringTimeT;
+  channel: string;
 };

@@ -1,5 +1,5 @@
 import { Message, EmbedFieldData, MessageEmbed } from 'discord.js';
-import { NowTutoringsT } from '../../interfaces/Schedules';
+import { CurrentTutoringT } from '../../interfaces/Schedules';
 import { Schedules } from '../../lib/Schedules';
 
 export default {
@@ -8,7 +8,7 @@ export default {
     description: '⏰ Veja as monitorias de agora!',
   },
   async execute(message: Message): Promise<Message<boolean>> {
-    const tutorings: NowTutoringsT[] = Schedules.getNowTutorings(
+    const tutorings: CurrentTutoringT[] = Schedules.getCurrentTutorings(
       message.guild.id,
     );
 
@@ -27,7 +27,7 @@ export default {
 
     const fields: EmbedFieldData[] = [];
 
-    tutorings.forEach((t: NowTutoringsT) => {
+    tutorings.forEach((t: CurrentTutoringT) => {
       fields.push({
         name: t.tutor.name,
         value:

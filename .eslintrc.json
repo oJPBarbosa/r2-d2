@@ -25,6 +25,8 @@
     "consistent-return": 0,
     "default-case": 0,
     "no-case-declarations": 0,
+    "no-promise-executor-return": 0,
+    "no-useless-return": 0,
     "max-len": ["warn", { "code": 80 }]
   }
 }

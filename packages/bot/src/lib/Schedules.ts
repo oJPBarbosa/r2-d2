@@ -1,6 +1,12 @@
-import { SchedulesT, NowTutoringsT } from '../interfaces/Schedules';
-import { ScheduleT, TutoringT, TutoringTimeT } from '../interfaces/GuildData';
+import { SchedulesT, CurrentTutoringT } from '../interfaces/Schedules';
+import {
+  ScheduleT,
+  TutoringT,
+  TutoringTimeT,
+  TutorT,
+} from '../interfaces/GuildData';
 import { weekdays } from '../utils/weekdays';
+import { Channels } from './Channels';
 
 export class Schedules {
   private static schedules: SchedulesT = null;
@@ -12,15 +18,11 @@ export class Schedules {
     };
   }
 
-  static getSchedules(): SchedulesT {
-    return this.schedules;
-  }
-
   static getDayTutorings(guild: string, day: string): TutoringT[] {
     return this.schedules[guild][day];
   }
 
-  static getNowTutorings(guild: string): NowTutoringsT[] {
+  static getCurrentTutorings(guild: string): CurrentTutoringT[] {
     const tts: TutoringT[] = this.getDayTutorings(
       guild,
       weekdays[new Date().getDay()],
@@ -30,7 +32,7 @@ export class Schedules {
       return;
     }
 
-    const tutorings: NowTutoringsT[] = [];
+    const tutorings: CurrentTutoringT[] = [];
 
     tts.forEach((t: TutoringT) => {
       t.tutoring.forEach((tt: TutoringTimeT) => {
@@ -54,11 +56,25 @@ export class Schedules {
               from: tt.from,
               to: tt.to,
             },
+            channel: Channels.findChannelByTutor(guild, t.tutor.id).id,
           });
         }
       });
     });
 
     return tutorings;
+  }
+
+  static getChannelCurrentTutorings(
+    guild: string,
+    channel: string,
+  ): CurrentTutoringT {
+    const tutorings: CurrentTutoringT[] = this.getCurrentTutorings(guild);
+
+    if (!tutorings) {
+      return;
+    }
+
+    return tutorings.find((t: CurrentTutoringT) => t.channel === channel);
   }
 }
