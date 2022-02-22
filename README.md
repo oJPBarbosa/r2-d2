@@ -7,7 +7,7 @@
   </a>
   <img alt="GitHub" src="https://img.shields.io/github/license/oJPBarbosa/r2-d2.svg">
   <a href="https://www.codacy.com/gh/oJPBarbosa/r2-d2/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=oJPBarbosa/r2-d2&amp;utm_campaign=Badge_Grade">
-    <img alt="Codacy Badge" src="">
+    <img alt="Codacy Badge" src="https://app.codacy.com/project/badge/Grade/bde3092bceba40cc97fff89365c0d855">
   </a>
 </p>
 
