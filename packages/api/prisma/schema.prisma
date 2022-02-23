@@ -1,0 +1,56 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  shadowDatabaseUrl    = env("SHADOW_DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model Tutoring {
+  id            String   @id
+  at            Json
+  tutor_id      String
+  student_id    String
+  department_id String
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  tutor      Tutor      @relation(fields: [tutor_id], references: [id])
+  student    Student    @relation(fields: [student_id], references: [id])
+  department Department @relation(fields: [department_id], references: [id])
+}
+
+model Tutor {
+  id            String   @id
+  name          String   @unique
+  department_id String
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  tutorings  Tutoring[]
+  department Department @relation(fields: [department_id], references: [id])
+}
+
+model Student {
+  id                String   @id
+  name              String   @unique
+  enrollment_number String   @unique
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+
+  tutorings Tutoring[]
+}
+
+model Department {
+  id         String   @id
+  name       String   @unique
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  tutors    Tutor[]
+  tutorings Tutoring[]
+}

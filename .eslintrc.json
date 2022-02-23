@@ -27,6 +27,11 @@
     "no-case-declarations": 0,
     "no-promise-executor-return": 0,
     "no-useless-return": 0,
+    "no-useless-constructor": 0,
+    "no-empty-function": 0,
+    "no-prototype-builtins": 0,
+    "camelcase": 0,
+    "class-methods-use-this": 0,
     "max-len": ["warn", { "code": 80 }]
   }
 }
