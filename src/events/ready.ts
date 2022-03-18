@@ -17,8 +17,8 @@ export = {
     client.user.setActivity('às monitorias!', { type: 'WATCHING' });
 
     client.guilds.cache.forEach(async (guild: Guild) => {
-      const response: AxiosResponse<any, any> = await axios.get(
-        process.env.GUILDS_DATA_URL.replace('{guild}', guild.id),
+      const response: AxiosResponse<any, any> = await axios.get(`
+        ${process.env.DEPARTMENTS_DATA_URL}/${guild.id}.json`
       );
 
       const { data }: { data: GuildDataT } = response;
