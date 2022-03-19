@@ -45,10 +45,10 @@ export default {
 
     const dm: DMChannel = await interaction.user.createDM();
 
-    dm.send({ embeds: [embed], components: [row] });
+    // dm.send({ embeds: [embed], components: [row] });
 
     await interaction.reply({
-      content: '📋',
+      content: 'Em breve!',
       ephemeral: true,
     });
   },

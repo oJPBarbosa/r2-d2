@@ -46,8 +46,8 @@ export default {
 
     const dm: DMChannel = await message.author.createDM();
 
-    dm.send({ embeds: [embed], components: [row] });
+    // dm.send({ embeds: [embed], components: [row] });
 
-    await message.reply('📋');
+    await message.reply('Em breve!');
   },
 };

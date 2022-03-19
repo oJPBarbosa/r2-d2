@@ -7,7 +7,7 @@ export default {
     .setDescription('📑 Veja as monitorias agendadas da semana!'),
   async execute(interaction: CommandInteraction): Promise<void> {
     await interaction.reply({
-      embeds: [],
+      content: 'Em breve!',
       ephemeral: true,
     });
   },
