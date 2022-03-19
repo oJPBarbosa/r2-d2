@@ -9,7 +9,7 @@ export default {
     description: 'Precisando de uma ajudinha? 🙋',
   },
   async execute(message: Message): Promise<void> {
-    const dir: string = process.env.NODE_ENV === 'production' ? 'build' : 'src';
+    const dir: string = process.env.NODE_ENV === 'production' ? 'dist' : 'src';
 
     const commands: EmbedFieldData[] = [];
     readdirSync(join(process.cwd(), dir, 'commands')).forEach(
