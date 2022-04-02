@@ -9,7 +9,7 @@ export default {
     name: 'hoje',
     description: '📅 Veja as monitorias do dia!',
   },
-  async execute(message: Message): Promise<Message<boolean>> {
+  async execute(message: Message): Promise<void> {
     const tutorings: TutoringT[] = Schedules.getDayTutorings(
       message.guild.id,
       weekdays[new Date().getDay()],
@@ -25,51 +25,51 @@ export default {
         .setTimestamp()
         .setColor('#538bbf');
 
-      return message.reply({ embeds: [embed] });
+      await message.reply({ embeds: [embed] });
+    } else {
+      const fields: EmbedFieldData[] = [];
+
+      tutorings.forEach((t: TutoringT) => {
+        let tts: string = '';
+
+        t.tutoring.forEach((tt: TutoringTimeT) => {
+          tts +=
+            '- **`' +
+            tt.from[0].toLocaleString('pt-BR', {
+              minimumIntegerDigits: 2,
+            }) +
+            ':' +
+            tt.from[1].toLocaleString('pt-BR', {
+              minimumIntegerDigits: 2,
+            }) +
+            '`** às **`' +
+            tt.to[0].toLocaleString('pt-BR', {
+              minimumIntegerDigits: 2,
+            }) +
+            ':' +
+            tt.to[1].toLocaleString('pt-BR', {
+              minimumIntegerDigits: 2,
+            }) +
+            '`**\n';
+        });
+
+        fields.push({
+          name: t.tutor.name,
+          value: tts,
+        });
+      });
+
+      const embed: MessageEmbed = new MessageEmbed()
+        .setTitle('📅 Monitorias hoje:')
+        .setFields(fields)
+        .setFooter({
+          text: 'Comando por ' + message.author.tag,
+          iconURL: message.author.displayAvatarURL(),
+        })
+        .setTimestamp()
+        .setColor('#cd3846');
+
+      await message.reply({ embeds: [embed] });
     }
-
-    const fields: EmbedFieldData[] = [];
-
-    tutorings.forEach((t: TutoringT) => {
-      let tts: string = '';
-
-      t.tutoring.forEach((tt: TutoringTimeT) => {
-        tts +=
-          '- **`' +
-          tt.from[0].toLocaleString('pt-BR', {
-            minimumIntegerDigits: 2,
-          }) +
-          ':' +
-          tt.from[1].toLocaleString('pt-BR', {
-            minimumIntegerDigits: 2,
-          }) +
-          '`** às **`' +
-          tt.to[0].toLocaleString('pt-BR', {
-            minimumIntegerDigits: 2,
-          }) +
-          ':' +
-          tt.to[1].toLocaleString('pt-BR', {
-            minimumIntegerDigits: 2,
-          }) +
-          '`**\n';
-      });
-
-      fields.push({
-        name: t.tutor.name,
-        value: tts,
-      });
-    });
-
-    const embed: MessageEmbed = new MessageEmbed()
-      .setTitle('📅 Monitorias hoje:')
-      .setFields(fields)
-      .setFooter({
-        text: 'Comando por ' + message.author.tag,
-        iconURL: message.author.displayAvatarURL(),
-      })
-      .setTimestamp()
-      .setColor('#cd3846');
-
-    return message.reply({ embeds: [embed] });
   },
 };
