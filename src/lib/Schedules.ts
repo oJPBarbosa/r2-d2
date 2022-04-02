@@ -1,10 +1,5 @@
 import { SchedulesT, CurrentTutoringT } from '../interfaces/Schedules';
-import {
-  ScheduleT,
-  TutoringT,
-  TutoringTimeT,
-  TutorT,
-} from '../interfaces/GuildData';
+import { ScheduleT, TutoringT, TutoringTimeT } from '../interfaces/GuildData';
 import { weekdays } from '../utils/weekdays';
 import { Channels } from './Channels';
 

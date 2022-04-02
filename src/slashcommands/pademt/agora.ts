@@ -51,7 +51,7 @@ export default {
       });
     });
 
-    if (!fields) {
+    if (fields.length === 0) {
       const embed: MessageEmbed = new MessageEmbed()
         .setTitle('ℹ️ Não há monitorias agora.')
         .setFooter({

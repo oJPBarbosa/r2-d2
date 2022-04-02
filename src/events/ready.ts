@@ -18,8 +18,7 @@ export = {
 
     client.guilds.cache.forEach(async (guild: Guild) => {
       const response: AxiosResponse<any, any> = await axios.get(`
-        ${process.env.DEPARTMENTS_DATA_URL}/${guild.id}.json`
-      );
+        ${process.env.TUTORING_DEPARTMENTS_DATA_URL}/${guild.id}.json`);
 
       const { data }: { data: GuildDataT } = response;
 
