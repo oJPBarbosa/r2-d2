@@ -47,9 +47,11 @@ export default {
     } catch {
       await interaction.reply({
         content:
-          'Não foi possível enviar o cronograma semanal. Verifique a privacidade de sua DM.',
+          'Verifique a privacidade de sua DM para receber o cronograma semanal de forma particular.',
         ephemeral: true,
       });
+
+      await interaction.channel.send({ embeds: [embed], components: [row] });
     }
   },
 };

@@ -46,8 +46,10 @@ export default {
       await message.reply('🗓️');
     } catch {
       await message.reply(
-        'Não foi possível enviar o cronograma semanal. Verifique a privacidade de sua DM.',
+        'Verifique a privacidade de sua DM para receber o cronograma semanal de forma particular.',
       );
+
+      await message.channel.send({ embeds: [embed], components: [row] });
     }
   },
 };
