@@ -39,8 +39,6 @@ export default {
       .setTimestamp()
       .setColor('#cd3846');
 
-    await interaction.reply({ content: '🗓️', ephemeral: true });
-
     try {
       const dm: DMChannel = await interaction.user.createDM();
       await dm.send({ embeds: [embed], components: [row] });
