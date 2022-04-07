@@ -39,9 +39,15 @@ export default {
       .setTimestamp()
       .setColor('#cd3846');
 
-    await message.reply('🗓️');
+    try {
+      const dm: DMChannel = await message.author.createDM();
+      await dm.send({ embeds: [embed], components: [row] });
 
-    const dm: DMChannel = await message.author.createDM();
-    await dm.send({ embeds: [embed], components: [row] });
+      await message.reply('🗓️');
+    } catch {
+      await message.reply(
+        'Não foi possível enviar a mensagem. Verifique a privacidade de sua DM.',
+      );
+    }
   },
 };

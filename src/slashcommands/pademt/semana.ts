@@ -41,7 +41,15 @@ export default {
 
     await interaction.reply({ content: '🗓️', ephemeral: true });
 
-    const dm: DMChannel = await interaction.user.createDM();
-    await dm.send({ embeds: [embed], components: [row] });
+    try {
+      const dm: DMChannel = await interaction.user.createDM();
+      await dm.send({ embeds: [embed], components: [row] });
+
+      await interaction.reply('🗓️');
+    } catch {
+      await interaction.reply(
+        'Não foi possível enviar a mensagem. Verifique a privacidade de sua DM.',
+      );
+    }
   },
 };
