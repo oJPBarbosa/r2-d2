@@ -3,6 +3,7 @@ import { CommandInteraction, EmbedFieldData, MessageEmbed } from 'discord.js';
 import { TutoringT, TutoringTimeT } from '../../interfaces/GuildData';
 import { Schedules } from '../../lib/Schedules';
 import { weekdays } from '../../utils/weekdays';
+import date from '../../utils/date';
 
 export default {
   data: new SlashCommandBuilder()
@@ -11,7 +12,7 @@ export default {
   async execute(interaction: CommandInteraction): Promise<void> {
     const tutorings: TutoringT[] = Schedules.getDayTutorings(
       interaction.guild.id,
-      weekdays[new Date().getDay()],
+      weekdays[date().weekday],
     );
 
     if (!tutorings) {

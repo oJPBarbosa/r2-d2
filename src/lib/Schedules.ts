@@ -1,6 +1,8 @@
 import { SchedulesT, CurrentTutoringT } from '../interfaces/Schedules';
 import { ScheduleT, TutoringT, TutoringTimeT } from '../interfaces/GuildData';
 import { weekdays } from '../utils/weekdays';
+import date from '../utils/date';
+import { DateTime } from 'luxon';
 import { Channels } from './Channels';
 
 export class Schedules {
@@ -24,7 +26,7 @@ export class Schedules {
   static getCurrentTutorings(guild: string): CurrentTutoringT[] {
     const tts: TutoringT[] = this.getDayTutorings(
       guild,
-      weekdays[new Date().getDay()],
+      weekdays[date().weekday],
     );
 
     if (!tts) {
@@ -35,19 +37,16 @@ export class Schedules {
 
     tts.forEach((t: TutoringT) => {
       t.tutoring.forEach((tt: TutoringTimeT) => {
-        const now: Date = new Date();
+        const now: DateTime = date();
 
-        const tutoringFrom: Date = new Date();
-        tutoringFrom.setHours(tt.from[0]);
-        tutoringFrom.setMinutes(tt.from[1]);
-
-        const tutoringTo: Date = new Date();
-        tutoringTo.setHours(tt.to[0]);
-        tutoringTo.setMinutes(tt.to[1]);
+        const [fromHour, fromMinute] = tt.from;
+        const [toHour, toMinute] = tt.to;
 
         if (
-          now.getTime() >= tutoringFrom.getTime() &&
-          now.getTime() <= tutoringTo.getTime()
+          now.hour >= fromHour &&
+          now.minute >= fromMinute &&
+          now.hour <= toHour &&
+          now.minute <= toMinute
         ) {
           tutorings.push({
             tutor: t.tutor,

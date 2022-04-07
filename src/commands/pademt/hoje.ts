@@ -3,6 +3,7 @@ import { Message, EmbedFieldData, MessageEmbed } from 'discord.js';
 import { TutoringT } from '../../interfaces/GuildData';
 import { Schedules } from '../../lib/Schedules';
 import { weekdays } from '../../utils/weekdays';
+import date from '../../utils/date';
 
 export default {
   data: {
@@ -12,7 +13,7 @@ export default {
   async execute(message: Message): Promise<void> {
     const tutorings: TutoringT[] = Schedules.getDayTutorings(
       message.guild.id,
-      weekdays[new Date().getDay()],
+      weekdays[date().weekday],
     );
 
     if (!tutorings) {

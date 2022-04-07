@@ -12,7 +12,6 @@ import {
   MessageSelectMenu,
   MessageEmbed,
   DMChannel,
-  Message,
 } from 'discord.js';
 import { Channels } from './Channels';
 import {
@@ -24,6 +23,7 @@ import {
 import { CurrentTutoringT } from '../interfaces/Schedules';
 import { Schedules } from './Schedules';
 import { weekdays } from '../utils/weekdays';
+import date from '../utils/date';
 
 export default async (client: IClient, interval: number): Promise<void> => {
   await new Promise((resolve) => setTimeout(resolve, 250));
@@ -58,7 +58,7 @@ export default async (client: IClient, interval: number): Promise<void> => {
         const tutorings: CurrentTutoringT =
           Schedules.getChannelCurrentTutorings(channel.guild.id, channel.id);
 
-        const today: string = weekdays[new Date().getDay()];
+        const today: string = weekdays[date().weekday];
 
         if (tutorings && !members.has(tutor.id)) {
           // if there should be tutorings happening right now in the channel
@@ -144,7 +144,7 @@ export default async (client: IClient, interval: number): Promise<void> => {
             const dm: DMChannel = await member.createDM();
 
             if (
-              new Date().getMinutes() >
+              date().minute >
               (await dm.messages.fetch({ limit: 1 }))
                 .first()
                 .createdAt.getMinutes() +
@@ -215,7 +215,7 @@ export default async (client: IClient, interval: number): Promise<void> => {
             const dm: DMChannel = await member.createDM();
 
             if (
-              new Date().getMinutes() >
+              date().minute >
               (await dm.messages.fetch({ limit: 1 }))
                 .first()
                 .createdAt.getMinutes() +
