@@ -45,9 +45,11 @@ export default {
 
       await interaction.reply('🗓️');
     } catch {
-      await interaction.reply(
-        'Não foi possível enviar a mensagem. Verifique a privacidade de sua DM.',
-      );
+      await interaction.reply({
+        content:
+          'Não foi possível enviar o cronograma semanal. Verifique a privacidade de sua DM.',
+        ephemeral: true,
+      });
     }
   },
 };
