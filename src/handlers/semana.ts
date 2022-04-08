@@ -3,11 +3,11 @@ import {
   EmbedFieldData,
   MessageEmbed,
 } from 'discord.js';
-import { TutoringT, TutoringTimeT } from '../interfaces/GuildData';
-import { Schedules } from '../lib/Schedules';
-import { weekdays, translatedWeekdays } from '../utils/weekdays';
+import { TutoringT, TutoringTimeT } from '@/interfaces';
+import { Schedules } from '@/lib';
+import { weekdays, dias } from '@/utils';
 
-export const handleSelectMenuInteraction: Function = async (
+export const semanaHandleSelectMenuInteraction: Function = async (
   interaction: SelectMenuInteraction,
 ): Promise<void> => {
   const [guild, weekday] = interaction.values[0].split('-');
@@ -16,11 +16,7 @@ export const handleSelectMenuInteraction: Function = async (
 
   if (!tutorings) {
     const embed: MessageEmbed = new MessageEmbed()
-      .setTitle(
-        `ℹ️ Não há monitorias ${
-          translatedWeekdays[weekdays.indexOf(weekday)]
-        }.`,
-      )
+      .setTitle(`ℹ️ Não há monitorias ${dias[weekdays.indexOf(weekday)]}.`)
       .setFooter({
         text: interaction.client.guilds.cache.get(guild).name,
         iconURL: interaction.client.guilds.cache.get(guild).iconURL(),
@@ -64,7 +60,7 @@ export const handleSelectMenuInteraction: Function = async (
   });
 
   const embed: MessageEmbed = new MessageEmbed()
-    .setTitle(`📅 Monitorias ${translatedWeekdays[weekdays.indexOf(weekday)]}:`)
+    .setTitle(`📅 Monitorias ${dias[weekdays.indexOf(weekday)]}:`)
     .setFields(fields)
     .setFooter({
       text: interaction.client.guilds.cache.get(guild).name,

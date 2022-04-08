@@ -1,8 +1,8 @@
 import { SelectMenuInteraction } from 'discord.js';
-import date from '../utils/date';
+import { date } from '@/utils';
 import axios, { AxiosResponse } from 'axios';
 
-export const handleSelectMenuInteraction: Function = async (
+export const agendarHandleSelectMenuInteraction: Function = async (
   interaction: SelectMenuInteraction,
 ): Promise<void> => {
   const [guild, weekday] = interaction.values[0].split('-');

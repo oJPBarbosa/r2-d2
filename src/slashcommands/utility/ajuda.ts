@@ -2,7 +2,7 @@ import { SlashCommandBuilder } from '@discordjs/builders';
 import { CommandInteraction, EmbedFieldData, MessageEmbed } from 'discord.js';
 import { readdirSync } from 'fs';
 import { join } from 'path';
-import { CommandT } from '../../interfaces/Command';
+import { CommandT } from '@/interfaces';
 
 export default {
   data: new SlashCommandBuilder()

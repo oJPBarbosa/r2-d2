@@ -1,12 +1,5 @@
-import {
-  Collection,
-  ApplicationCommandDataResolvable,
-  Message,
-  Interaction,
-} from 'discord.js';
-import { CommandT } from './CommandT';
-import { RESTPostAPIApplicationCommandsJSONBody } from 'discord-api-types';
-import { IClient } from './Client';
+import { Collection, ApplicationCommandDataResolvable } from 'discord.js';
+import { CommandT, IClient } from '@/interfaces';
 
 export interface IEventExecuteParams {
   args: [any];

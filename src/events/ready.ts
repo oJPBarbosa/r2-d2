@@ -1,10 +1,8 @@
-import { IEventExecuteParams } from '../interfaces/Event';
+import { IEventExecuteParams, GuildDataT } from '@/interfaces';
 import { ApplicationCommandDataResolvable, Guild } from 'discord.js';
-import { Schedules } from '../lib/Schedules';
-import { Channels } from '../lib/Channels';
-import { GuildDataT } from '../interfaces/GuildData';
+import { Schedules, Channels } from '@/lib';
 import axios, { AxiosResponse } from 'axios';
-// import watchVoiceChannels from '../lib/watchVoiceChannels';
+// import watchVoiceChannels from '@/lib';
 
 export = {
   name: 'ready',

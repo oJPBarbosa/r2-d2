@@ -1,4 +1,4 @@
-import { IEventExecuteParams } from '../interfaces/Event';
+import { IEventExecuteParams, SlashCommandT } from '@/interfaces';
 import { APIMessage } from 'discord-api-types';
 import {
   Message,
@@ -6,9 +6,10 @@ import {
   SelectMenuInteraction,
   MessageEmbed,
 } from 'discord.js';
-import { SlashCommandT } from '../interfaces/SlashCommand';
-import { handleSelectMenuInteraction as semanaHandleSelectMenuInteraction } from '../handlers/semana';
-import { handleSelectMenuInteraction as agendarHandleSelectMenuInteraction } from '../handlers/agendar';
+import {
+  semanaHandleSelectMenuInteraction,
+  agendarHandleSelectMenuInteraction,
+} from '@/handlers';
 
 export = {
   name: 'interactionCreate',

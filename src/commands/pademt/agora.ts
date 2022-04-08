@@ -1,6 +1,6 @@
 import { Message, EmbedFieldData, MessageEmbed } from 'discord.js';
-import { CurrentTutoringT } from '../../interfaces/Schedules';
-import { Schedules } from '../../lib/Schedules';
+import { CurrentTutoringT } from '@/interfaces';
+import { Schedules } from '@/lib';
 
 export default {
   data: {

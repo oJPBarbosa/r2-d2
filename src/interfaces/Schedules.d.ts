@@ -1,4 +1,4 @@
-import { ScheduleT, TutorT, TutoringTimeT } from './GuildData';
+import { ScheduleT, TutorT, TutoringTimeT } from '@/interfaces';
 
 export type SchedulesT = {
   schedule: ScheduleT;

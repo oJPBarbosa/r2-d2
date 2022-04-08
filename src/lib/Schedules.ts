@@ -1,9 +1,13 @@
-import { SchedulesT, CurrentTutoringT } from '../interfaces/Schedules';
-import { ScheduleT, TutoringT, TutoringTimeT } from '../interfaces/GuildData';
-import { weekdays } from '../utils/weekdays';
-import date from '../utils/date';
+import {
+  SchedulesT,
+  CurrentTutoringT,
+  ScheduleT,
+  TutoringT,
+  TutoringTimeT,
+} from '@/interfaces';
+import { weekdays, date } from '@/utils';
 import { DateTime } from 'luxon';
-import { Channels } from './Channels';
+import { Channels } from '@/lib';
 
 export class Schedules {
   private static schedules: SchedulesT = null;

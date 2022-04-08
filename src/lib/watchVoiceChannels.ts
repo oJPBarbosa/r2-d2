@@ -1,6 +1,13 @@
 // todo: make this bullshit work properly
 
-import { IClient } from '../interfaces/Client';
+import {
+  IClient,
+  ChannelT,
+  TutorT,
+  TutoringT,
+  TutoringTimeT,
+  CurrentTutoringT,
+} from '@/interfaces';
 import {
   VoiceChannel,
   Guild,
@@ -13,20 +20,11 @@ import {
   MessageEmbed,
   DMChannel,
 } from 'discord.js';
-import { Channels } from './Channels';
-import {
-  ChannelT,
-  TutorT,
-  TutoringT,
-  TutoringTimeT,
-} from '../interfaces/GuildData';
-import { CurrentTutoringT } from '../interfaces/Schedules';
-import { Schedules } from './Schedules';
-import { weekdays } from '../utils/weekdays';
-import date from '../utils/date';
+import { Channels, Schedules } from '@/lib';
+import { weekdays, date } from '@/utils';
 
 export default async (client: IClient, interval: number): Promise<void> => {
-  await new Promise((resolve) => setTimeout(resolve, 250));
+  await new Promise((resolve: any) => setTimeout(resolve, 250));
 
   const channels: ChannelT[] = [];
 

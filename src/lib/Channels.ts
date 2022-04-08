@@ -1,5 +1,4 @@
-import { ChannelsT } from '../interfaces/Channels';
-import { ChannelT, TutorT } from '../interfaces/GuildData';
+import { ChannelsT, ChannelT, TutorT } from '@/interfaces';
 
 export class Channels {
   private static channels: ChannelsT = null;

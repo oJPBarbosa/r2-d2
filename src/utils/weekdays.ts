@@ -8,7 +8,7 @@ export const weekdays: string[] = [
   'saturday',
 ];
 
-export const translatedWeekdays: string[] = [
+export const dias: string[] = [
   'domingo',
   'segunda-feira',
   'terça-feira',

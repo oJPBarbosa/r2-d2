@@ -7,8 +7,8 @@ import {
   MessageActionRow,
   MessageSelectMenu,
 } from 'discord.js';
-import { Schedules } from '../../lib/Schedules';
-import { weekdays, translatedWeekdays } from '../../utils/weekdays';
+import { Schedules } from '@/lib';
+import { weekdays, dias } from '@/utils';
 
 export default {
   data: new SlashCommandBuilder()
@@ -31,8 +31,8 @@ export default {
 
     const options: MessageSelectOptionData[] = days.map((day: string) => ({
       label:
-        translatedWeekdays[weekdays.indexOf(day)].charAt(0).toUpperCase() +
-        translatedWeekdays[weekdays.indexOf(day)].slice(1),
+        dias[weekdays.indexOf(day)].charAt(0).toUpperCase() +
+        dias[weekdays.indexOf(day)].slice(1),
       value: `${interaction.guild.id}-${day}`,
     }));
 

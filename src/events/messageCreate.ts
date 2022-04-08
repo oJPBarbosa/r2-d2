@@ -1,7 +1,6 @@
-import { IEventExecuteParams } from '../interfaces/Event';
+import { IEventExecuteParams, CommandT } from '@/interfaces';
 import { APIMessage } from 'discord-api-types';
 import { Message } from 'discord.js';
-import { CommandT } from '../interfaces/Command';
 
 export = {
   name: 'messageCreate',

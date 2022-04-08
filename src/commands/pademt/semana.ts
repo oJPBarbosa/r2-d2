@@ -6,7 +6,7 @@ import {
   MessageEmbed,
   DMChannel,
 } from 'discord.js';
-import { weekdays, translatedWeekdays } from '../../utils/weekdays';
+import { weekdays, dias } from '@/utils';
 
 export default {
   data: {
@@ -16,9 +16,7 @@ export default {
   async execute(message: Message): Promise<void> {
     const options: MessageSelectOptionData[] = weekdays.map(
       (weekday: string, index: number) => ({
-        label:
-          translatedWeekdays[index].charAt(0).toUpperCase() +
-          translatedWeekdays[index].slice(1),
+        label: dias[index].charAt(0).toUpperCase() + dias[index].slice(1),
         value: `${message.guild.id}-${weekday}`,
       }),
     );
