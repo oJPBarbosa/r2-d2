@@ -1,4 +1,4 @@
-import { IEventExecuteParams, CommandT } from '@/interfaces';
+import { IEventExecuteParams, CommandT } from '../interfaces';
 import { APIMessage } from 'discord-api-types';
 import { Message } from 'discord.js';
 

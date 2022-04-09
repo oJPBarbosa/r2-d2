@@ -3,9 +3,9 @@ import {
   EmbedFieldData,
   MessageEmbed,
 } from 'discord.js';
-import { TutoringT, TutoringTimeT } from '@/interfaces';
-import { Schedules } from '@/lib';
-import { weekdays, dias } from '@/utils';
+import { TutoringT, TutoringTimeT } from '../interfaces';
+import { Schedules } from '../lib';
+import { weekdays, dias } from '../utils';
 
 export const semanaHandleSelectMenuInteraction: Function = async (
   interaction: SelectMenuInteraction,

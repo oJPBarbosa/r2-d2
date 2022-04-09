@@ -7,8 +7,8 @@ import {
   MessageActionRow,
   MessageSelectMenu,
 } from 'discord.js';
-import { Schedules } from '@/lib';
-import { weekdays, dias } from '@/utils';
+import { Schedules } from '../../lib';
+import { weekdays, dias } from '../../utils';
 
 export default {
   data: new SlashCommandBuilder()

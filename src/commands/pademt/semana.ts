@@ -6,7 +6,7 @@ import {
   MessageEmbed,
   DMChannel,
 } from 'discord.js';
-import { weekdays, dias } from '@/utils';
+import { weekdays, dias } from '../../utils';
 
 export default {
   data: {

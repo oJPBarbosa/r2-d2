@@ -1,8 +1,8 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { TutoringT, TutoringTimeT } from '@/interfaces';
+import { TutoringT, TutoringTimeT } from '../../interfaces';
 import { CommandInteraction, EmbedFieldData, MessageEmbed } from 'discord.js';
-import { Schedules } from '@/lib';
-import { weekdays, date } from '@/utils';
+import { Schedules } from '../../lib';
+import { weekdays, date } from '../../utils';
 
 export default {
   data: new SlashCommandBuilder()

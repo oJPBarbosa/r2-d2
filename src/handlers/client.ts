@@ -1,4 +1,4 @@
-import { IClient, CommandT, SlashCommandT, EventT } from '@/interfaces';
+import { IClient, CommandT, SlashCommandT, EventT } from '../interfaces';
 import { readdirSync } from 'fs';
 import { join } from 'path';
 import { RESTPostAPIApplicationCommandsJSONBody } from 'discord-api-types';

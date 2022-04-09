@@ -1,4 +1,4 @@
-import { ChannelT } from '@/interfaces';
+import { ChannelT } from '.';
 
 export type ChannelsT = {
   guild: ChannelT[];

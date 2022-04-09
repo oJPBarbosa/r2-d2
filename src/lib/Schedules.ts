@@ -4,10 +4,10 @@ import {
   ScheduleT,
   TutoringT,
   TutoringTimeT,
-} from '@/interfaces';
-import { weekdays, date } from '@/utils';
+} from '../interfaces';
+import { weekdays, date } from '../utils';
 import { DateTime } from 'luxon';
-import { Channels } from '@/lib';
+import { Channels } from '../lib';
 
 export class Schedules {
   private static schedules: SchedulesT = null;

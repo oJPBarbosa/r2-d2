@@ -7,7 +7,7 @@ import {
   TutoringT,
   TutoringTimeT,
   CurrentTutoringT,
-} from '@/interfaces';
+} from '../interfaces';
 import {
   VoiceChannel,
   Guild,
@@ -20,8 +20,8 @@ import {
   MessageEmbed,
   DMChannel,
 } from 'discord.js';
-import { Channels, Schedules } from '@/lib';
-import { weekdays, date } from '@/utils';
+import { Channels, Schedules } from '.';
+import { weekdays, date } from '../utils';
 
 export default async (client: IClient, interval: number): Promise<void> => {
   await new Promise((resolve: any) => setTimeout(resolve, 250));

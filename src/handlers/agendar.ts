@@ -1,5 +1,5 @@
 import { SelectMenuInteraction } from 'discord.js';
-import { date } from '@/utils';
+import { date } from '../utils';
 import axios, { AxiosResponse } from 'axios';
 
 export const agendarHandleSelectMenuInteraction: Function = async (

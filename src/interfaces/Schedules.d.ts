@@ -1,4 +1,4 @@
-import { ScheduleT, TutorT, TutoringTimeT } from '@/interfaces';
+import { ScheduleT, TutorT, TutoringTimeT } from '.';
 
 export type SchedulesT = {
   schedule: ScheduleT;

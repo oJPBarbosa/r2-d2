@@ -1,4 +1,4 @@
-import { ChannelsT, ChannelT, TutorT } from '@/interfaces';
+import { ChannelsT, ChannelT, TutorT } from '../interfaces';
 
 export class Channels {
   private static channels: ChannelsT = null;

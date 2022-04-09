@@ -1,7 +1,7 @@
-import { TutoringTimeT, TutoringT } from '@/interfaces';
+import { TutoringTimeT, TutoringT } from '../../interfaces';
 import { Message, EmbedFieldData, MessageEmbed } from 'discord.js';
-import { Schedules } from '@/lib';
-import { date, weekdays } from '@/utils';
+import { Schedules } from '../../lib';
+import { date, weekdays } from '../../utils';
 
 export default {
   data: {
