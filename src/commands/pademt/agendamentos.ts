@@ -6,6 +6,6 @@ export default {
     description: '📑 Veja as monitorias agendadas da semana!',
   },
   async execute(message: Message): Promise<void> {
-    await message.reply('Em breve!');
+    // await message.reply('Em breve!');
   },
 };

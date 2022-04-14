@@ -7,6 +7,7 @@ import {
   DMChannel,
 } from 'discord.js';
 import { weekdays, dias } from '../../utils';
+import { MessageDelete } from '../../services';
 
 export default {
   data: {
@@ -40,14 +41,14 @@ export default {
     try {
       const dm: DMChannel = await message.author.createDM();
       await dm.send({ embeds: [embed], components: [row] });
-
-      await message.reply('🗓️');
     } catch {
-      await message.reply(
+      const reply: Message = await message.reply(
         'Verifique a privacidade de sua DM para receber o cronograma semanal de forma particular.',
       );
 
-      await message.channel.send({ embeds: [embed], components: [row] });
+      MessageDelete.append(reply);
     }
+
+    await message.delete();
   },
 };

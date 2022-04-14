@@ -2,6 +2,7 @@ import { TutoringT, TutoringTimeT } from '../../interfaces';
 import { Message, EmbedFieldData, MessageEmbed } from 'discord.js';
 import { Schedules } from '../../lib';
 import { weekdays, date } from '../../utils';
+import { MessageDelete } from '../../services';
 
 export default {
   data: {
@@ -24,7 +25,9 @@ export default {
         .setTimestamp()
         .setColor('#538bbf');
 
-      await message.reply({ embeds: [embed] });
+      const reply: Message = await message.reply({ embeds: [embed] });
+
+      MessageDelete.append(reply);
     } else {
       const fields: EmbedFieldData[] = [];
 
@@ -68,7 +71,11 @@ export default {
         .setTimestamp()
         .setColor('#fcc140');
 
-      await message.reply({ embeds: [embed] });
+      const reply: Message = await message.reply({ embeds: [embed] });
+
+      MessageDelete.append(reply);
     }
+
+    await message.delete();
   },
 };

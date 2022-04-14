@@ -39,17 +39,20 @@ export default {
 
     try {
       const dm: DMChannel = await interaction.user.createDM();
+
       await dm.send({ embeds: [embed], components: [row] });
 
-      await interaction.reply('🗓️');
+      await interaction.reply({ content: '🗓️', ephemeral: true });
     } catch {
+      embed.setDescription(
+        'Verifique a privacidade de sua DM para receber o cronograma semanal de forma particular.',
+      );
+
       await interaction.reply({
-        content:
-          'Verifique a privacidade de sua DM para receber o cronograma semanal de forma particular.',
+        embeds: [embed],
+        components: [row],
         ephemeral: true,
       });
-
-      await interaction.channel.send({ embeds: [embed], components: [row] });
     }
   },
 };

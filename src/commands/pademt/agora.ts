@@ -1,6 +1,7 @@
 import { Message, EmbedFieldData, MessageEmbed } from 'discord.js';
 import { CurrentTutoringT } from '../../interfaces';
 import { Schedules } from '../../lib';
+import { MessageDelete } from '../../services';
 
 export default {
   data: {
@@ -22,7 +23,9 @@ export default {
         .setTimestamp()
         .setColor('#538bbf');
 
-      await message.reply({ embeds: [embed] });
+      const reply: Message<boolean> = await message.reply({ embeds: [embed] });
+
+      MessageDelete.append(reply);
     } else {
       const fields: EmbedFieldData[] = [];
 
@@ -60,7 +63,11 @@ export default {
           .setTimestamp()
           .setColor('#538bbf');
 
-        await message.reply({ embeds: [embed] });
+        const reply: Message<boolean> = await message.reply({
+          embeds: [embed],
+        });
+
+        MessageDelete.append(reply);
       } else {
         const embed: MessageEmbed = new MessageEmbed()
           .setTitle('⏰ Monitorias agora:')
@@ -72,8 +79,14 @@ export default {
           .setTimestamp()
           .setColor('#f7c85e');
 
-        await message.reply({ embeds: [embed] });
+        const reply: Message<boolean> = await message.reply({
+          embeds: [embed],
+        });
+
+        MessageDelete.append(reply);
       }
     }
+
+    await message.delete();
   },
 };

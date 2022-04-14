@@ -60,7 +60,7 @@ export default {
           .setTimestamp()
           .setColor('#538bbf');
 
-        await interaction.reply({ embeds: [embed] });
+        await interaction.reply({ embeds: [embed], ephemeral: true });
       } else {
         const embed: MessageEmbed = new MessageEmbed()
           .setTitle('⏰ Monitorias agora:')
@@ -72,7 +72,7 @@ export default {
           .setTimestamp()
           .setColor('#f7c85e');
 
-        await interaction.reply({ embeds: [embed] });
+        await interaction.reply({ embeds: [embed], ephemeral: true });
       }
     }
   },

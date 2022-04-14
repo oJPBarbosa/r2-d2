@@ -2,6 +2,7 @@ import { Message, EmbedFieldData, MessageEmbed } from 'discord.js';
 import { readdirSync } from 'fs';
 import { join } from 'path';
 import { CommandT } from '../../interfaces';
+import { MessageDelete } from '../../services';
 
 export default {
   data: {
@@ -49,6 +50,10 @@ export default {
       .setTimestamp()
       .setColor('#e58032');
 
-    await message.reply({ embeds: [embed] });
+    const reply: Message = await message.reply({ embeds: [embed] });
+
+    MessageDelete.append(reply);
+
+    await message.delete();
   },
 };

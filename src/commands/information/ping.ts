@@ -1,4 +1,5 @@
 import { Message, MessageEmbed } from 'discord.js';
+import { MessageDelete } from '../../services/MessageDelete';
 
 export default {
   data: {
@@ -23,6 +24,10 @@ export default {
       .setTimestamp()
       .setColor('#dd2e44');
 
-    await message.reply({ embeds: [embed] });
+    const reply: Message = await message.reply({ embeds: [embed] });
+
+    MessageDelete.append(reply);
+
+    await message.delete();
   },
 };

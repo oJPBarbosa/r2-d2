@@ -49,6 +49,6 @@ export default {
       .setTimestamp()
       .setColor('#e58032');
 
-    await interaction.reply({ embeds: [embed] });
+    await interaction.reply({ embeds: [embed], ephemeral: true });
   },
 };

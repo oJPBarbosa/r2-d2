@@ -47,6 +47,6 @@ export default {
 
     // dm.send({ embeds: [embed], components: [row] });
 
-    await message.reply('Em breve!');
+    // await message.reply('Em breve!');
   },
 };

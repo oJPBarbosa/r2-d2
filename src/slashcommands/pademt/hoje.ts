@@ -24,7 +24,7 @@ export default {
         .setTimestamp()
         .setColor('#538bbf');
 
-      await interaction.reply({ embeds: [embed] });
+      await interaction.reply({ embeds: [embed], ephemeral: true });
     }
 
     const fields: EmbedFieldData[] = [];
@@ -69,6 +69,6 @@ export default {
       .setTimestamp()
       .setColor('#cd3846');
 
-    await interaction.reply({ embeds: [embed] });
+    await interaction.reply({ embeds: [embed], ephemeral: true });
   },
 };
