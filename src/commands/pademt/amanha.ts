@@ -12,7 +12,7 @@ export default {
   async execute(message: Message): Promise<void> {
     const tutorings: TutoringT[] = Schedules.getDayTutorings(
       message.guild.id,
-      weekdays[date().weekday + 1 > 7 ? 0 : date().weekday + 1],
+      weekdays[date().weekday + 1 > 7 ? 1 : date().weekday + 1],
     );
 
     if (!tutorings) {
