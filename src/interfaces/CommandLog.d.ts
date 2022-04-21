@@ -1,14 +1,14 @@
-type AuthorT = {
+type CommandLogAuthorT = {
   id: string;
   tag: string;
 };
 
-type GuildT = {
+type CommandLogGuildT = {
   id: string;
   name: string;
 };
 
-type ChannelT = {
+type CommandLogChannelT = {
   id: string;
   name: string;
 };
@@ -17,7 +17,7 @@ export type CommandLogT = {
   id: string;
   timestamp: Date;
   name: string;
-  author: AuthorT;
-  guild: GuildT;
-  channel: ChannelT;
+  author: CommandLogAuthorT;
+  guild: CommandLogGuildT;
+  channel: CommandLogChannelT;
 };
