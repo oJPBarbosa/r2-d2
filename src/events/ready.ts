@@ -28,7 +28,11 @@ export = {
       }
     });
 
-    console.log(client.user.username + ' is up and running!');
+    console.log(
+      `${new Date().toUTCString()} [LOG]: [${client.user.tag} - ${
+        client.user.id
+      }] is up and running!`,
+    );
 
     // watchVoiceChannels(client, 250);
   },
