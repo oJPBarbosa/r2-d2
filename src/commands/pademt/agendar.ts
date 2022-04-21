@@ -51,5 +51,7 @@ export default {
     // await message.reply('Em breve!');
 
     CommandLog.append(message);
+
+    await message.delete();
   },
 };
