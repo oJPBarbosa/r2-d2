@@ -2,7 +2,7 @@ import { TutoringT, TutoringTimeT } from '../../interfaces';
 import { Message, EmbedFieldData, MessageEmbed } from 'discord.js';
 import { Schedules } from '../../lib';
 import { weekdays, date } from '../../utils';
-import { MessageDelete } from '../../services';
+import { MessageDelete, CommandLog } from '../../services';
 
 export default {
   data: {
@@ -75,6 +75,8 @@ export default {
 
       MessageDelete.append(reply);
     }
+
+    CommandLog.append(message);
 
     await message.delete();
   },

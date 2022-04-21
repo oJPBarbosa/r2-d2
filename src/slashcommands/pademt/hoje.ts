@@ -2,6 +2,7 @@ import { SlashCommandBuilder } from '@discordjs/builders';
 import { CommandInteraction, EmbedFieldData, MessageEmbed } from 'discord.js';
 import { TutoringT, TutoringTimeT } from '../../interfaces';
 import { Schedules } from '../../lib';
+import { CommandLog } from '../../services';
 import { weekdays, date } from '../../utils';
 
 export default {
@@ -68,6 +69,8 @@ export default {
       })
       .setTimestamp()
       .setColor('#cd3846');
+
+    CommandLog.append(interaction);
 
     await interaction.reply({ embeds: [embed], ephemeral: true });
   },

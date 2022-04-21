@@ -3,6 +3,7 @@ import { TutoringT, TutoringTimeT } from '../../interfaces';
 import { CommandInteraction, EmbedFieldData, MessageEmbed } from 'discord.js';
 import { Schedules } from '../../lib';
 import { weekdays, date } from '../../utils';
+import { CommandLog } from '../../services';
 
 export default {
   data: new SlashCommandBuilder()
@@ -70,5 +71,7 @@ export default {
 
       await interaction.reply({ embeds: [embed], ephemeral: true });
     }
+
+    CommandLog.append(interaction);
   },
 };

@@ -8,6 +8,7 @@ import {
   DMChannel,
 } from 'discord.js';
 import { weekdays, dias } from '../../utils';
+import { CommandLog } from '../../services';
 
 export default {
   data: new SlashCommandBuilder()
@@ -53,6 +54,8 @@ export default {
         components: [row],
         ephemeral: true,
       });
+
+      CommandLog.append(interaction);
     }
   },
 };

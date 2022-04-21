@@ -1,5 +1,6 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { CommandInteraction, Message, MessageEmbed } from 'discord.js';
+import { CommandLog } from '../../services';
 
 export default {
   data: new SlashCommandBuilder()
@@ -24,5 +25,7 @@ export default {
       .setColor('#dd2e44');
 
     await interaction.reply({ embeds: [embed], ephemeral: true });
+
+    CommandLog.append(interaction);
   },
 };

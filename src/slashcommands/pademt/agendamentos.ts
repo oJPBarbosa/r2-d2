@@ -1,5 +1,6 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { CommandInteraction } from 'discord.js';
+import { CommandLog } from '../../services';
 
 export default {
   data: new SlashCommandBuilder()
@@ -10,5 +11,7 @@ export default {
       content: 'Em breve!',
       ephemeral: true,
     });
+
+    CommandLog.append(interaction);
   },
 };

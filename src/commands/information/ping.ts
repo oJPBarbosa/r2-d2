@@ -1,5 +1,5 @@
 import { Message, MessageEmbed } from 'discord.js';
-import { MessageDelete } from '../../services/MessageDelete';
+import { CommandLog, MessageDelete } from '../../services';
 
 export default {
   data: {
@@ -26,6 +26,7 @@ export default {
 
     const reply: Message = await message.reply({ embeds: [embed] });
 
+    CommandLog.append(message);
     MessageDelete.append(reply);
 
     await message.delete();

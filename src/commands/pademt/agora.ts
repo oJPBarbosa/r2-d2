@@ -1,7 +1,7 @@
 import { Message, EmbedFieldData, MessageEmbed } from 'discord.js';
 import { CurrentTutoringT } from '../../interfaces';
 import { Schedules } from '../../lib';
-import { MessageDelete } from '../../services';
+import { MessageDelete, CommandLog } from '../../services';
 
 export default {
   data: {
@@ -86,6 +86,8 @@ export default {
         MessageDelete.append(reply);
       }
     }
+
+    CommandLog.append(message);
 
     await message.delete();
   },

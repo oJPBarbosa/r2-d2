@@ -2,6 +2,7 @@ import { SlashCommandBuilder } from '@discordjs/builders';
 import { CommandInteraction, EmbedFieldData, MessageEmbed } from 'discord.js';
 import { CurrentTutoringT } from '../../interfaces';
 import { Schedules } from '../../lib';
+import { CommandLog } from '../../services';
 
 export default {
   data: new SlashCommandBuilder()
@@ -75,5 +76,7 @@ export default {
         await interaction.reply({ embeds: [embed], ephemeral: true });
       }
     }
+
+    CommandLog.append(interaction);
   },
 };

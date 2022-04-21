@@ -2,7 +2,7 @@ import { Message, EmbedFieldData, MessageEmbed } from 'discord.js';
 import { readdirSync } from 'fs';
 import { join } from 'path';
 import { CommandT } from '../../interfaces';
-import { MessageDelete } from '../../services';
+import { MessageDelete, CommandLog } from '../../services';
 
 export default {
   data: {
@@ -53,6 +53,7 @@ export default {
     const reply: Message = await message.reply({ embeds: [embed] });
 
     MessageDelete.append(reply);
+    CommandLog.append(message);
 
     await message.delete();
   },

@@ -8,6 +8,7 @@ import {
 } from 'discord.js';
 import { Schedules } from '../../lib';
 import { weekdays, dias } from '../../utils';
+import { CommandLog } from '../../services';
 
 export default {
   data: {
@@ -48,5 +49,7 @@ export default {
     // dm.send({ embeds: [embed], components: [row] });
 
     // await message.reply('Em breve!');
+
+    CommandLog.append(message);
   },
 };

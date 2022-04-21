@@ -1,4 +1,5 @@
 import { Message } from 'discord.js';
+import { CommandLog } from '../../services';
 
 export default {
   data: {
@@ -7,5 +8,7 @@ export default {
   },
   async execute(message: Message): Promise<void> {
     // await message.reply('Em breve!');
+
+    CommandLog.append(message);
   },
 };

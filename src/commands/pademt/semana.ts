@@ -7,7 +7,7 @@ import {
   DMChannel,
 } from 'discord.js';
 import { weekdays, dias } from '../../utils';
-import { MessageDelete } from '../../services';
+import { MessageDelete, CommandLog } from '../../services';
 
 export default {
   data: {
@@ -48,6 +48,8 @@ export default {
 
       MessageDelete.append(reply);
     }
+
+    CommandLog.append(message);
 
     await message.delete();
   },

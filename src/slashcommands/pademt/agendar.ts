@@ -9,6 +9,7 @@ import {
 } from 'discord.js';
 import { Schedules } from '../../lib';
 import { weekdays, dias } from '../../utils';
+import { CommandLog } from '../../services';
 
 export default {
   data: new SlashCommandBuilder()
@@ -51,5 +52,7 @@ export default {
       content: 'Em breve!',
       ephemeral: true,
     });
+
+    CommandLog.append(interaction);
   },
 };

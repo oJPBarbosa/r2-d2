@@ -3,6 +3,7 @@ import { CommandInteraction, EmbedFieldData, MessageEmbed } from 'discord.js';
 import { readdirSync } from 'fs';
 import { join } from 'path';
 import { CommandT } from '../../interfaces';
+import { CommandLog } from '../../services';
 
 export default {
   data: new SlashCommandBuilder()
@@ -50,5 +51,7 @@ export default {
       .setColor('#e58032');
 
     await interaction.reply({ embeds: [embed], ephemeral: true });
+
+    CommandLog.append(interaction);
   },
 };
