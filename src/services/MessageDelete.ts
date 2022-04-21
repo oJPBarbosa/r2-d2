@@ -1,16 +1,15 @@
 import { IClient } from '../interfaces';
+import { client as c } from '..';
 import { Message, TextChannel } from 'discord.js';
 
 export class MessageDelete {
-  private static messages: Message[] = [];
+  private static client: IClient = c;
 
-  private static client: IClient = null;
+  private static messages: Message[] = [];
 
   public static append(message: Message): void {
     const guilds: string[] =
       process.env.TUTORING_DEPARTMENTS_WITH_MESSAGE_DELETE_SERVICE.split(',');
-
-    this.client = message.client as IClient;
 
     if (guilds.includes(message.guild.id)) {
       this.messages.push(message);
