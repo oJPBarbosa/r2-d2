@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 
-type CommandDataT = {
+export type CommandDataT = {
   name: string;
   description: string;
 };

@@ -1,14 +1,14 @@
-type CommandLogAuthorT = {
+export type CommandLogAuthorT = {
   id: string;
   tag: string;
 };
 
-type CommandLogGuildT = {
+export type CommandLogGuildT = {
   id: string;
   name: string;
 };
 
-type CommandLogChannelT = {
+export type CommandLogChannelT = {
   id: string;
   name: string;
 };
