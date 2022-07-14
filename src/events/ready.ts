@@ -12,7 +12,7 @@ export = {
       commands as ApplicationCommandDataResolvable[],
     );
 
-    client.user.setActivity('às monitorias!', { type: 'WATCHING' });
+    client.user.setActivity('as monitorias!', { type: 'WATCHING' });
 
     client.guilds.cache.forEach(async (guild: Guild) => {
       const response: AxiosResponse<any, any> = await axios.get(`
